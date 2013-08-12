@@ -1,0 +1,231 @@
+* {font-family: Helvetica,'Trebuchet MS',sans-serif; line-height: 13px; color: #747474;}
+
+html {height: 100%;}
+
+body {
+	height: 100%;
+	background-color: #ffffff;
+	margin: 0;
+	padding: 0;
+}
+
+form, fieldset {margin: 0; padding: 0; border: 0;}
+img {border: 0;}
+
+/* SKIP NAVIGATION */
+.access {
+	width: 0 !important;
+	padding: 0 !important;
+}
+.access a {
+	display: block;
+	position: absolute;
+	top: -200px;
+	left: 0px;
+	width: 0px !important;
+	text-align: center;
+	background: #ffffff;
+	padding: 10px;
+	border: 1px solid #ff0000;
+	text-decoration: underline;
+	font-weight: bold;
+	font-size: 20px;
+	line-height: 26px;
+	font-stretch: condensed;
+}
+
+.access a:focus,
+.access a:active {
+	width: 97% !important;
+	top: 0px;
+	left: 0px;
+}
+.codeError {
+	display: none;
+}
+
+
+
+
+#page {
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+#nav {
+	float: left;
+	height: 100%;
+	width: 280px;
+	position: relative;
+	overflow: hidden;
+	
+	
+}
+#nav ul {
+	width: 260px;
+	list-style: none;
+	padding: 0 0 0 40px;
+	overflow: hidden;
+	bottom: 40px;
+	left: 0px;
+	margin: 0;
+	position: absolute;
+}
+#nav ul ul {
+	position: static;
+	width: 240px;
+}
+#nav ul.menu {top: 34px;}
+#nav li {float: left;}
+#nav li span {display: none;}
+#nav .menu li {float: none;}
+
+#nav .frontpage {
+	text-indent: -1000px;
+	height: 72px;
+	display: block;
+	float: none;
+	padding: 0;
+	background: transparent url(/img/logo.png) no-repeat top left;
+}
+#nav .frontpage a {
+	height: 72px;
+	display: block;
+}
+
+#nav .contact {height: 95px; cursor: pointer;}
+#nav .contact h3 {padding: 0; margin: 0;}
+#nav .contact.open span a,
+#nav .contact.open span {display: block; font-size: 12px; line-height: 13px;}
+#nav .contact.open span span {display: inline;}
+#nav li a:hover,
+#nav li a:hover span,
+#nav .menu li a:hover {
+	color: #ff007e;
+}
+#nav .menu li,
+#nav .menu li a {
+	color: #747474;
+}
+#nav .menu li a {
+	display: block;
+}
+#nav li,
+#nav li h3,
+#nav li a {
+	font-weight: normal;
+	font-size: 18px;
+	line-height: 20px;
+	font-stretch: condensed;
+	text-transform: uppercase;
+	text-decoration: none;
+	
+}
+#nav li a {cursor: pointer;}
+#nav li, #nav li a, #nav li.sel a {color: #000000;}
+
+/*#nav li.selected a {
+	background: transparent url(/img/bg_a_sel_right.png) no-repeat 100% 3px;
+}*/
+#content {
+	overflow: hidden;
+	height: 100%;
+
+}
+.carousel {
+	position: relative;
+	overflow: hidden;
+	height: 100%;
+}
+.carousel p {height: 13px;}
+.carousel div.image {
+	padding-top: 40px;
+	height: 70%;
+	max-height: 700px;
+}
+.carousel img.image {
+	height: 100%;
+	max-height: 700px;
+}
+.carousel .images,
+.carousel .imageNav {
+	position: relative;
+	overflow: hidden;
+}
+
+.carousel .images ul,
+.carousel .imageNav ul {
+	list-style: none;
+	position: relative;
+	height: 52px;
+	margin: 0;
+	padding: 0;
+}
+
+.carousel .images ul {
+	/*
+	position: absolute;
+	top: 0;
+	left: 0;
+	*/
+
+}
+
+.carousel .images li {
+	position: absolute;
+	top: 0;
+}
+
+.carousel .images li,
+.carousel .imageNav li {
+	overflow: hidden;
+	float: left;
+}
+.carousel li a {
+	cursor: pointer;
+	position: relative;
+	display: block;
+}
+
+.carousel .imageNav {margin-right: 20px;}
+.carousel .imageNav li {position: absolute; height: 52px;}
+.carousel .imageNav li.sel a {opacity: 1;}
+.carousel .imageNav li a img {height: 52px; padding-right: 1px;}
+
+.carousel .imageNav li a {opacity: 0.5;}
+.carousel .imageNav li a:hover {opacity: 1;}
+
+.carousel .imageNav .a,
+.carousel .imageNav .b {
+	position: absolute;
+	top: 0;
+	width: 45px;
+	height: 52px;
+	background-color: transparent;
+	background-repeat: no-repeat;
+}
+.carousel .imageNav .a.browse,
+.carousel .imageNav .b.browse {background-image: url(/img/bg_nav.png);}
+
+.carousel .imageNav .a {left: 0px; background-position: top left;}
+.carousel .imageNav .b {right: 0px; background-position: right bottom;}
+
+
+#footer {overflow: hidden;}
+#footer span {
+	padding: 10px 0 0 10px;
+	font-size: 10px;
+	float: left;
+}
+#footer #back {
+	float: right;
+	background: transparent url(/img/bg_a_sel_left.png) no-repeat 0 4px;
+	color: #000000;
+	font-weight: bold;
+	font-size: 20px;
+	line-height: 26px;
+	font-stretch: condensed;
+	padding: 0 10px 0 80px;
+}
+
+
