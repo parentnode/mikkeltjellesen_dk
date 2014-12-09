@@ -3,7 +3,7 @@
 
 
 /*s-page-mobile_touch.css*/
-* {font-family: Arial, Verdana, sans-serif; color: #000000;
+* {font-family: Helvetica, "Trebuchet MS", sans-serif; color: #000000;
 	-webkit-text-size-adjust: none;
 	-webkit-font-smoothing: antialiased;
 }
@@ -51,7 +51,7 @@ body.landscape #navigation {display: none;}
 #header .servicenavigation {position: absolute; top: 0; left: 0; z-index: 9; width: 100%; height: 60px;}
 #header .servicenavigation li.navigation {position: absolute; right: 0; top: 0; width: 30px; height: 39px; padding: 15px 15px 0;}
 #header .servicenavigation li.navigation div {border-radius: 1px; height: 3px; margin: 0 0 5px; background: #888888;}
-#header .servicenavigation li.navigation.open div {background: #b92fba;}
+#header .servicenavigation li.navigation.open div {background: #ff007e;}
 #header .servicenavigation li.navigation a {display: none;}
 #header .servicenavigation li.user {display: none;}
 #header .servicenavigation li.admin {display: none;}
@@ -65,9 +65,9 @@ body.landscape #navigation {display: none;}
 #navigation li {display: block; font-size: 20px; line-height: 20px; padding: 10px 0;}
 #navigation li * {text-transform: uppercase;}
 #navigation li a {text-decoration: none;}
-#navigation li.selected a {color: #b92fba;}
+#navigation li.selected a {color: #ff007e;}
 #navigation li.front {margin: 15px 0 0; height: 99px; padding: 15px 0 0; border-top: 1px solid #bbbbbb;} 
-#navigation li.front a {text-indent: -1000px; height: 99px; display: block; background: transparent url(/img/logo.png) no-repeat top center;}
+#navigation li.front a {text-indent: -1000px; height: 99px; display: block; background: transparent url(/img/logo.png) no-repeat left center;}
 #navigation li.contact {padding: 10px 0 10px; border-bottom: 1px solid #bbbbbb; margin: 0 0 15px;}
 #navigation li.contact ul {opacity: 0; padding: 0; overflow: hidden;}
 #navigation li.contact h3 {padding: 0 0 15px; margin: 0; font-size: 20px; line-height: 20px; cursor: pointer;}
@@ -102,7 +102,7 @@ body.landscape #navigation {display: none;}
 
 /*s-active-mobile_touch.css*/
 a:active {text-decoration: none;}
-#navigation li a:active {color: #b92fba;}
-#header .servicenavigation li.navigation:active div {background-color: #b92fba;}
+#navigation li a:active {color: #ff007e;}
+#header .servicenavigation li.navigation:active div {background-color: #ff007e;}
 #content .scene.photos ul.images li:active {opacity: 1;}
 

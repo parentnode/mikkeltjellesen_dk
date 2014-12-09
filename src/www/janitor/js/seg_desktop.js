@@ -7798,7 +7798,8 @@ Util.Objects["addMedia"] = new function() {
 								existing_variant.parentNode.removeChild(existing_variant);
 							}
 						}
-						var node = u.ie(div.media_list, "li");
+						var node = u.ie(this.div.media_list, "li", {"class":"media"});
+						node.div = this.div;
 						node.media_list = this.div.media_list;
 						node.media_format = media.format;
 						node.media_variant = media.variant;
@@ -7811,6 +7812,10 @@ Util.Objects["addMedia"] = new function() {
 						}
 						else {
 							node.media_name.innerHTML = media.name;
+						}
+						this.div.adjustMediaName(node);
+						if(!u.hc(this.div, "variant") && this.div.update_name_url) {
+							this.div.addUpdateNameForm(node);
 						}
 					}
 					if(this.div.save_order_url) {
@@ -7934,14 +7939,14 @@ Util.Objects["addMedia"] = new function() {
 				u.ac(node, "zip");
 				this.addZipPreview(node);
 			}
+		}
+		div.adjustMediaName = function(node) {
+			u.bug("adjust media name:" + u.nodeId(node) + ", " + node.media_name)
 			if(node.media_name) {
 				var n_w = node.offsetWidth;
 				var p_p_l = parseInt(u.gcs(node.media_name, "padding-left"));
 				var p_p_r = parseInt(u.gcs(node.media_name, "padding-right"));
 				u.as(node.media_name, "width", (n_w - p_p_l - p_p_r)+"px");
-				if(!u.hc(this, "variant") && this.update_name_url) {
-					this.addUpdateNameForm(node);
-				}
 			}
 		}
 		div.addImage = function(node) {
@@ -7981,7 +7986,11 @@ Util.Objects["addMedia"] = new function() {
 			this.addImage(node);
 			if(node.media_format) {
 				this.addDeleteForm(node);
-				node.image.src = "/images/"+this.item_id+"/"+node.media_variant+"/x"+node.offsetHeight+"."+node.media_format+"?"+u.randomString(4);
+				node.loaded = function(queue) {
+					this.image.src = queue[0].image.src;
+					this.div.adjustMediaName(this);
+				}
+				u.preloader(node, ["/images/"+this.item_id+"/"+node.media_variant+"/x"+node.offsetHeight+"."+node.media_format+"?"+u.randomString(4)]);
 			}
 		}
 		div.addAudioPreview = function(node) {
@@ -8043,6 +8052,10 @@ Util.Objects["addMedia"] = new function() {
 			node.media_variant = u.cv(node, "variant");
 			node.media_format = u.cv(node, "format");
 			div.addPreview(node);
+			div.adjustMediaName(node);
+			if(!u.hc(div, "variant") && div.update_name_url) {
+				div.addUpdateNameForm(node);
+			}
 		}
 		if(!u.hc(div, "variant") && u.hc(div, "sortable") && div.media_list && div.save_order_url) {
 			u.sortable(div.media_list, {"targets":"mediae", "draggables":"media"});

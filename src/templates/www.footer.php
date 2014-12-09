@@ -15,7 +15,7 @@ $collections = $IC->getItems(array("itemtype" => "photocollection", "status" => 
 					<li class="street" itemprop="streetAddress">N&oslash;rrebrogade 7A st.tv.</li>
 					<li class="postalcity">DK-<span itemprop="postalCode">2200</span> <span itemprop="addressLocality">Copenhagen N</span></li>
 					<li class="phone" itemprop="telephone">+45 26 370 270</li>
-					<li class="email" itemprop="email"><a href="mailto:mail@teisbruno.com">mail@mikkeltjellesen.dk</a></li>
+					<li class="email" itemprop="email"><a href="mailto:mail@mikkeltjellesen.dk">mail@mikkeltjellesen.dk</a></li>
 				</ul>
 			</li>
 <?		foreach($collections as $collection):

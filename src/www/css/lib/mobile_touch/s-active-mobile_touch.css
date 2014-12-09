@@ -1,5 +1,5 @@
 a:active {text-decoration: none;}
 
-#navigation li a:active {color: #b92fba;}
-#header .servicenavigation li.navigation:active div {background-color: #b92fba;}
+#navigation li a:active {color: #ff007e;}
+#header .servicenavigation li.navigation:active div {background-color: #ff007e;}
 #content .scene.photos ul.images li:active {opacity: 1;}
