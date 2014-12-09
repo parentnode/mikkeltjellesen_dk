@@ -19,8 +19,8 @@ define("SITE_EMAIL", "mail@mikkeltjellesen.dk");
 /**
 * Optional constants
 */
-define("DEFAULT_PAGE_DESCRIPTION", "Fotograf Mikkel Tjellesen");
-define("DEFAULT_LANGUAGE_ISO", "DA");
+define("DEFAULT_PAGE_DESCRIPTION", "Photographer Mikkel Tjellesen");
+define("DEFAULT_LANGUAGE_ISO", "EN");
 define("DEFAULT_COUNTRY_ISO", "DK");
 
 
