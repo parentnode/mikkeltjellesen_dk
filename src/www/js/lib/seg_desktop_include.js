@@ -1,21 +1,13 @@
+document.write('<script type="text/javascript" src="/js/manipulator/v0_8/full/seg_desktop.js"></script>');
 
-document.write('<script language="javascript" type="text/javascript" src="/js/framework/u.js"></script>');
+document.write('<script type="text/javascript" src="/js/manipulator/src/u-dom.js"></script>');
+document.write('<script type="text/javascript" src="/js/manipulator/src/u-animation.js"></script>');
+document.write('<script type="text/javascript" src="/js/manipulator/src/u-history.js"></script>');
+document.write('<script type="text/javascript" src="/js/manipulator/src/u-navigation.js"></script>');
 
-//document.write('<script language="javascript" type="text/javascript" src="/js/framework/obj_util_ajax.js"></script>');
-document.write('<script language="javascript" type="text/javascript" src="/js/framework/u-xmlrequest.js"></script>');
-document.write('<script language="javascript" type="text/javascript" src="/js/framework/u-url.js"></script>');
-document.write('<script language="javascript" type="text/javascript" src="/js/framework/u-system.js"></script>');
-document.write('<script language="javascript" type="text/javascript" src="/js/framework/u-position.js"></script>');
+document.write('<script type="text/javascript" src="/js/lib/desktop/i-page-desktop.js"></script>');
+document.write('<script type="text/javascript" src="/js/lib/desktop/i-front-desktop.js"></script>');
+document.write('<script type="text/javascript" src="/js/lib/desktop/i-photos-desktop.js"></script>');
 
-document.write('<script language="javascript" type="text/javascript" src="/js/framework/u-events.js"></script>');
-document.write('<script language="javascript" type="text/javascript" src="/js/framework/u-dom.js"></script>');
-document.write('<script language="javascript" type="text/javascript" src="/js/framework/u-debug.js"></script>');
-document.write('<script language="javascript" type="text/javascript" src="/js/framework/u-mailto.js"></script>');
-document.write('<script language="javascript" type="text/javascript" src="/js/framework/u-interface.js"></script>');
-
-document.write('<script language="javascript" type="text/javascript" src="/js/framework/u-init.js"></script>');
-
-//document.write('<script language="javascript" type="text/javascript" src="/js/lib/i-contact.js"></script>');
-document.write('<script language="javascript" type="text/javascript" src="/js/i-menu.js"></script>');
-document.write('<script language="javascript" type="text/javascript" src="/js/i-home.js"></script>');
-document.write('<script language="javascript" type="text/javascript" src="/js/i-carousel.js"></script>');
+document.write('<script type="text/javascript" src="/js/lib/ga.js"></script>');
+document.write('<script type="text/javascript" src="/js/manipulator/v0_8/src/u-googleanalytics.js"></script>');

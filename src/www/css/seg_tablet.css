@@ -1,0 +1,87 @@
+
+/*seg_tablet_include.css*/
+
+
+/*s-page-desktop.css*/
+* {color: #000000;
+	font-family: Arial, sans-serif;
+	-webkit-text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+}
+html {height: 100%;}
+body {height: 100%; background-color: #ffffff; margin: 0;}
+h1, h2, h3, h4, h5, h6, p, ul, li, dl, dd, dt {padding: 0; margin: 0;}
+h1, h2, h3, h4, h5, h6, p, li, dd, dt, span, a {line-height: 1em; font-weight: normal;}
+ul {list-style: none; }
+ul li {display: inline-block; vertical-align: top;}
+a {text-decoration: none; cursor: pointer;}
+img {border: 0; display: block; margin-bottom: 20px;}
+form, fieldset, label, input, select, textarea {padding: 0; margin: 0; font-weight: normal;}
+fieldset {border: none;}
+input, select, textarea {font-size: 14px;}
+input, textarea {outline: none;}
+span {font-size: inherit; font-family: inherit; font-weight: inherit; color: inherit; text-transform: inherit;}
+a {text-decoration: underline; font-family: inherit;}
+h1 {font-size: 44px; padding-bottom: 30px;}
+h2 {font-size: 24px; padding-bottom: 7px; padding-top: 7px;}
+h3 {font-size: 20px; padding-bottom: 4px; padding-top: 4px; line-height: 23px;}
+h4 {font-size: 13px;}
+h5 {}
+h6 {}
+p {font-size: 12px; line-height: 1.4em; padding: 0 0 20px;} 
+#page {height: 100%; overflow: hidden;}
+
+/*s-header-desktop.css*/
+#header {z-index: 50; position: absolute; top: 0; left: 0; width: 220px; height: 100%; opacity: 0;}
+#header .servicenavigation {display: none;}
+#navigation {height: 100%; width: 220px;}
+#navigation ul {width: 200px; padding: 14px 0 0 20px;}
+#navigation li {display: block; font-size: 18px; line-height: 26px;}
+#navigation li * {text-transform: uppercase;}
+#navigation li a {text-decoration: none;}
+#navigation li.selected a {color: #b92fba;}
+#navigation li.front {position: absolute; bottom: 0; left: 20px; width: 200px; height: 83px;} 
+#navigation li.front a {text-indent: -1000px; height: 83px; display: block; background: transparent url(/img/logo_200.png) no-repeat top left;}
+#navigation li.contact {height: 126px;}
+#navigation li.contact ul {display: none; opacity: 0; padding: 0;}
+#navigation li.contact h3 {padding: 0; margin: 0; font-size: 12px; color: #888888; cursor: pointer;}
+#navigation li.contact li {display: block; font-size: 12px; line-height: 13px;}
+#navigation li.contact li.role {display: none;}
+#navigation li.contact li.phone {padding-top: 10px;}
+#navigation li.contact li.email a {font-weight: bold;}
+
+
+/*s-content-desktop.css*/
+#content {height: 100%;}
+#content .scene {position: relative; padding: 20px 20px 20px 240px; height: 100%;}
+#content .scene.front {padding: 0;}
+#content .cover {z-index: 90; margin: 20px; position: absolute; left: 0; top: 0; width: 100%; background-color: transparent; background-position: center center; background-repeat: no-repeat; background-size: 100% auto;}
+#content .scene.photos {}
+#content .scene.photos div.image {}
+#content .scene.photos div.image img {height: 100%;}
+#content .scene.photos p.image {height: 37px; padding: 3px 0 0; color: #888888;}
+#content .scene.photos div.carousel {overflow: hidden; position: relative; height: 52px;}
+#content .scene.photos div.carousel div.left,
+#content .scene.photos div.carousel div.right {position: absolute; top: 0; width: 45px; height: 52px; background-color: transparent; background-repeat: no-repeat;
+	background-image: url(/img/bg_nav.png);
+}
+#content .scene.photos div.carousel div.left {left: 0px; background-position: top left;}
+#content .scene.photos div.carousel div.right {right: 0px; background-position: right bottom;}
+#content .scene.photos ul.images {font-size: 0; height: 52px;}
+#content .scene.photos ul.images li {display: inline-block; vertical-align: top; opacity: 0.5;}
+#content .scene.photos ul.images li.selected {opacity: 1;}
+#content .scene.photos ul.images li a {display: none;}
+#content .scene.photos ul.images li img {opacity: 0; margin: 0; pointer-events: none;
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+
+
+/*s-content-tablet.css*/
+a:active {text-decoration: none;}
+#navigation li a:active {color: #b92fba;}
+body.portrait {background: #ffffff url(/img/logo_rotate.png) no-repeat center center;}
+body.portrait #page {display: none;}
+

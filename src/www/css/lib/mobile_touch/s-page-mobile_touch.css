@@ -1,0 +1,55 @@
+* {font-family: Arial, Verdana, sans-serif; color: #000000;
+	-webkit-text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+}
+
+html {height: 100%;}
+body {background: #ffffff; margin: 0; height: 100%;}
+
+
+/* BASE */
+h1, h2, h3, h4, h5, h6, p, ul, li, dl, dd, dt {padding: 0; margin: 0;}
+h1, h2, h3, h4, h5, h6, p, li, dd, dt, span, a {line-height: 1em; font-weight: normal;}
+
+ul {list-style: none;}
+a {text-decoration: none; cursor: pointer;}
+a:hover {}
+
+img {border: 0; display: block;}
+form, fieldset, label, input, select, textarea {padding: 0; margin: 0; font-weight: normal;}
+fieldset {border: none;}
+input, select, textarea {font-size: 14px;}
+input, textarea {outline: none;}
+
+
+
+#page {position: relative; height: 100%; font-size: 0; overflow: hidden; background: #ffffff; z-index: 5;
+	-webkit-transform: translate3d(0,0,0);
+}
+a, span {font-size: inherit; font-family: inherit; color: inherit; text-transform: inherit;}
+
+h1 {line-height: 28px; padding: 0 0 20px; font-size: 25px;}
+h2 {line-height: 1.25em; padding-bottom: 7px; padding-top: 7px; font-size: 18px;}
+h3 {font-size: 14px;}
+h4 {font-size: 14px;}
+h5 {}
+h6 {}
+
+
+p {line-height: 22px; padding: 0 0 20px; font-size: 14px;} 
+
+
+ul {font-size: 0;}
+li {display: inline-block; vertical-align: top; font-size: 13px;}
+
+dl {font-size: 0;} 
+dd, 
+dt {display: inline-block; vertical-align: top; font-size: 13px;}
+
+
+body.landscape {background: #ffffff url(/img/logo_rotate.png) no-repeat center center;}
+body.landscape #page {display: none;}
+body.landscape #header {display: none;}
+body.landscape #navigation {display: none;}
+
+

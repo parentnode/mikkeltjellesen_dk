@@ -1,231 +1,87 @@
-* {font-family: Helvetica,'Trebuchet MS',sans-serif; line-height: 13px; color: #747474;}
 
+/*seg_desktop_include.css*/
+
+
+/*s-page-desktop.css*/
+* {color: #000000;
+	font-family: Arial, sans-serif;
+	-webkit-text-size-adjust: none;
+	-webkit-font-smoothing: antialiased;
+}
 html {height: 100%;}
+body {height: 100%; background-color: #ffffff; margin: 0;}
+h1, h2, h3, h4, h5, h6, p, ul, li, dl, dd, dt {padding: 0; margin: 0;}
+h1, h2, h3, h4, h5, h6, p, li, dd, dt, span, a {line-height: 1em; font-weight: normal;}
+ul {list-style: none; }
+ul li {display: inline-block; vertical-align: top;}
+a {text-decoration: none; cursor: pointer;}
+img {border: 0; display: block; margin-bottom: 20px;}
+form, fieldset, label, input, select, textarea {padding: 0; margin: 0; font-weight: normal;}
+fieldset {border: none;}
+input, select, textarea {font-size: 14px;}
+input, textarea {outline: none;}
+span {font-size: inherit; font-family: inherit; font-weight: inherit; color: inherit; text-transform: inherit;}
+a {text-decoration: underline; font-family: inherit;}
+h1 {font-size: 44px; padding-bottom: 30px;}
+h2 {font-size: 24px; padding-bottom: 7px; padding-top: 7px;}
+h3 {font-size: 20px; padding-bottom: 4px; padding-top: 4px; line-height: 23px;}
+h4 {font-size: 13px;}
+h5 {}
+h6 {}
+p {font-size: 12px; line-height: 1.4em; padding: 0 0 20px;} 
+#page {height: 100%; overflow: hidden;}
 
-body {
-	height: 100%;
-	background-color: #ffffff;
-	margin: 0;
-	padding: 0;
-}
-
-form, fieldset {margin: 0; padding: 0; border: 0;}
-img {border: 0;}
-
-/* SKIP NAVIGATION */
-.access {
-	width: 0 !important;
-	padding: 0 !important;
-}
-.access a {
-	display: block;
-	position: absolute;
-	top: -200px;
-	left: 0px;
-	width: 0px !important;
-	text-align: center;
-	background: #ffffff;
-	padding: 10px;
-	border: 1px solid #ff0000;
-	text-decoration: underline;
-	font-weight: bold;
-	font-size: 20px;
-	line-height: 26px;
-	font-stretch: condensed;
-}
-
-.access a:focus,
-.access a:active {
-	width: 97% !important;
-	top: 0px;
-	left: 0px;
-}
-.codeError {
-	display: none;
-}
+/*s-header-desktop.css*/
+#header {z-index: 50; position: absolute; top: 0; left: 0; width: 220px; height: 100%; opacity: 0;}
+#header .servicenavigation {display: none;}
+#navigation {height: 100%; width: 220px;}
+#navigation ul {width: 200px; padding: 14px 0 0 20px;}
+#navigation li {display: block; font-size: 18px; line-height: 26px;}
+#navigation li * {text-transform: uppercase;}
+#navigation li a {text-decoration: none;}
+#navigation li.selected a {color: #b92fba;}
+#navigation li.front {position: absolute; bottom: 0; left: 20px; width: 200px; height: 83px;} 
+#navigation li.front a {text-indent: -1000px; height: 83px; display: block; background: transparent url(/img/logo_200.png) no-repeat top left;}
+#navigation li.contact {height: 126px;}
+#navigation li.contact ul {display: none; opacity: 0; padding: 0;}
+#navigation li.contact h3 {padding: 0; margin: 0; font-size: 12px; color: #888888; cursor: pointer;}
+#navigation li.contact li {display: block; font-size: 12px; line-height: 13px;}
+#navigation li.contact li.role {display: none;}
+#navigation li.contact li.phone {padding-top: 10px;}
+#navigation li.contact li.email a {font-weight: bold;}
 
 
-
-
-#page {
-	height: 100%;
-	width: 100%;
-	overflow: hidden;
+/*s-content-desktop.css*/
+#content {height: 100%;}
+#content .scene {position: relative; padding: 20px 20px 20px 240px; height: 100%;}
+#content .scene.front {padding: 0;}
+#content .cover {z-index: 90; margin: 20px; position: absolute; left: 0; top: 0; width: 100%; background-color: transparent; background-position: center center; background-repeat: no-repeat; background-size: 100% auto;}
+#content .scene.photos {}
+#content .scene.photos div.image {}
+#content .scene.photos div.image img {height: 100%;}
+#content .scene.photos p.image {height: 37px; padding: 3px 0 0; color: #888888;}
+#content .scene.photos div.carousel {overflow: hidden; position: relative; height: 52px;}
+#content .scene.photos div.carousel div.left,
+#content .scene.photos div.carousel div.right {position: absolute; top: 0; width: 45px; height: 52px; background-color: transparent; background-repeat: no-repeat;
+	background-image: url(/img/bg_nav.png);
 }
-#nav {
-	float: left;
-	height: 100%;
-	width: 280px;
-	position: relative;
-	overflow: hidden;
-	
-	
-}
-#nav ul {
-	width: 260px;
-	list-style: none;
-	padding: 0 0 0 40px;
-	overflow: hidden;
-	bottom: 40px;
-	left: 0px;
-	margin: 0;
-	position: absolute;
-}
-#nav ul ul {
-	position: static;
-	width: 240px;
-}
-#nav ul.menu {top: 34px;}
-#nav li {float: left;}
-#nav li span {display: none;}
-#nav .menu li {float: none;}
-
-#nav .frontpage {
-	text-indent: -1000px;
-	height: 72px;
-	display: block;
-	float: none;
-	padding: 0;
-	background: transparent url(/img/logo.png) no-repeat top left;
-}
-#nav .frontpage a {
-	height: 72px;
-	display: block;
+#content .scene.photos div.carousel div.left {left: 0px; background-position: top left;}
+#content .scene.photos div.carousel div.right {right: 0px; background-position: right bottom;}
+#content .scene.photos ul.images {font-size: 0; height: 52px;}
+#content .scene.photos ul.images li {display: inline-block; vertical-align: top; opacity: 0.5;}
+#content .scene.photos ul.images li.selected {opacity: 1;}
+#content .scene.photos ul.images li a {display: none;}
+#content .scene.photos ul.images li img {opacity: 0; margin: 0; pointer-events: none;
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
 }
 
-#nav .contact {height: 95px; cursor: pointer;}
-#nav .contact h3 {padding: 0; margin: 0;}
-#nav .contact.open span a,
-#nav .contact.open span {display: block; font-size: 12px; line-height: 13px;}
-#nav .contact.open span span {display: inline;}
-#nav li a:hover,
-#nav li a:hover span,
-#nav .menu li a:hover {
-	color: #ff007e;
-}
-#nav .menu li,
-#nav .menu li a {
-	color: #747474;
-}
-#nav .menu li a {
-	display: block;
-}
-#nav li,
-#nav li h3,
-#nav li a {
-	font-weight: normal;
-	font-size: 18px;
-	line-height: 20px;
-	font-stretch: condensed;
-	text-transform: uppercase;
-	text-decoration: none;
-	
-}
-#nav li a {cursor: pointer;}
-#nav li, #nav li a, #nav li.sel a {color: #000000;}
 
-/*#nav li.selected a {
-	background: transparent url(/img/bg_a_sel_right.png) no-repeat 100% 3px;
-}*/
-#content {
-	overflow: hidden;
-	height: 100%;
-
-}
-.carousel {
-	position: relative;
-	overflow: hidden;
-	height: 100%;
-}
-.carousel p {height: 13px;}
-.carousel div.image {
-	padding-top: 40px;
-	height: 70%;
-	max-height: 700px;
-}
-.carousel img.image {
-	height: 100%;
-	max-height: 700px;
-}
-.carousel .images,
-.carousel .imageNav {
-	position: relative;
-	overflow: hidden;
-}
-
-.carousel .images ul,
-.carousel .imageNav ul {
-	list-style: none;
-	position: relative;
-	height: 52px;
-	margin: 0;
-	padding: 0;
-}
-
-.carousel .images ul {
-	/*
-	position: absolute;
-	top: 0;
-	left: 0;
-	*/
-
-}
-
-.carousel .images li {
-	position: absolute;
-	top: 0;
-}
-
-.carousel .images li,
-.carousel .imageNav li {
-	overflow: hidden;
-	float: left;
-}
-.carousel li a {
-	cursor: pointer;
-	position: relative;
-	display: block;
-}
-
-.carousel .imageNav {margin-right: 20px;}
-.carousel .imageNav li {position: absolute; height: 52px;}
-.carousel .imageNav li.sel a {opacity: 1;}
-.carousel .imageNav li a img {height: 52px; padding-right: 1px;}
-
-.carousel .imageNav li a {opacity: 0.5;}
-.carousel .imageNav li a:hover {opacity: 1;}
-
-.carousel .imageNav .a,
-.carousel .imageNav .b {
-	position: absolute;
-	top: 0;
-	width: 45px;
-	height: 52px;
-	background-color: transparent;
-	background-repeat: no-repeat;
-}
-.carousel .imageNav .a.browse,
-.carousel .imageNav .b.browse {background-image: url(/img/bg_nav.png);}
-
-.carousel .imageNav .a {left: 0px; background-position: top left;}
-.carousel .imageNav .b {right: 0px; background-position: right bottom;}
-
-
-#footer {overflow: hidden;}
-#footer span {
-	padding: 10px 0 0 10px;
-	font-size: 10px;
-	float: left;
-}
-#footer #back {
-	float: right;
-	background: transparent url(/img/bg_a_sel_left.png) no-repeat 0 4px;
-	color: #000000;
-	font-weight: bold;
-	font-size: 20px;
-	line-height: 26px;
-	font-stretch: condensed;
-	padding: 0 10px 0 80px;
-}
-
+/*s-hovers-desktop.css*/
+a:hover {text-decoration: none;}
+#navigation li a:hover {color: #b92fba;}
+#header .servicenavigation li.navigation:hover div {background-color: #b92fba;}
+#content .scene.photos ul.images li:hover {opacity: 1;}
 

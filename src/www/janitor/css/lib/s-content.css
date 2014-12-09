@@ -1,0 +1,17 @@
+/* FRONTPAGES */
+#content .frontpageList ul.items > li {min-height: 90px; padding-left: 160px;}
+
+/* PHOTOCOLLECTIONS */
+#content .photocollectionList ul.items > li h3 {padding: 16px 30px;}
+
+
+/* MEDIA UPLOADS CUSTOM SIZES */
+#content .defaultEdit div.main_media form.upload input[type=file] {height: 195px;}
+#content .defaultEdit div.main_media form.upload label {margin-top: 82px;}
+#content .defaultEdit div.main_media img {height: 216px;}
+
+
+/* NAVIGATION */
+body.frontpage #navigation .frontpage a,
+body.photocollection #navigation .photocollection a {padding-left: 35px; color: #ffffff;}
+

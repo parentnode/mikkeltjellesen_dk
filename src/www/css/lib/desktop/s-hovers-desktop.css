@@ -1,0 +1,6 @@
+a:hover {text-decoration: none;}
+
+#navigation li a:hover {color: #b92fba;}
+#header .servicenavigation li.navigation:hover div {background-color: #b92fba;}
+
+#content .scene.photos ul.images li:hover {opacity: 1;}

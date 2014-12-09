@@ -1,43 +1,22 @@
 <?php
-$access_item = array();
-$access_default = "page,list";
-
 $access_item = false;
-
 if(isset($read_access) && $read_access) {
 	return;
 }
 
-include_once($_SERVER["PAGE_PATH"]."/page.class.php");
-$object = $page->addObject("www/item.class.php");
+include_once($_SERVER["FRAMEWORK_PATH"]."/config/init.php");
 
-Session::setValue("nav_sindex", "frontpage");
 
-// default view
-if(!$page->getStatus()) {$page->setStatus($access_default);}
+$action = $page->actions();
+$IC = new Items();
 
-// header
-if($page->getStatus("page")) {
-	$page->header("Mikkel Tjellesen");
 
-}
+$page->bodyClass("front");
+$page->pageTitle("Photographer - Teis Bruno");
 
-// views
-// excluding each other
-if($page->getStatus("list")) {
 
-//	$page->setUrlMarker("list");
-	$page->getObject($object)->getSearchItems();
-		$page->getTemplate("item.view.php", $object);
-}
-
-// footer
-if($page->getStatus("page")) {
-	$page->footer();
-	//print $page->codeError(true);
-	exit();
-}
-
-// actions
+$page->page(array(
+	"templates" => "pages/front.php"
+));
 
 ?>
