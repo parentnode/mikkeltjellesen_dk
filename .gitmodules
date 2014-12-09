@@ -4,3 +4,6 @@
 [submodule "submodules/css-merger"]
 	path = submodules/css-merger
 	url = https://github.com/parentnode/css-merger.git
+[submodule "submodules/janitor"]
+	path = submodules/janitor
+	url = https://github.com/parentnode/janitor.git
