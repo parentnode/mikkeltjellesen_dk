@@ -11,7 +11,7 @@
 #navigation li.selected a {color: #ff007e;}
 
 
-#navigation li.front {position: absolute; bottom: 0; left: 20px; width: 200px; height: 83px;} 
+#navigation li.front {position: absolute; bottom: 0; left: 20px; width: 200px; height: 93px;} 
 #navigation li.front a {text-indent: -1000px; height: 83px; display: block; background: transparent url(/img/logo_200.png) no-repeat top left;}
 
 

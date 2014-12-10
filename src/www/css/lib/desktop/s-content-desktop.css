@@ -22,7 +22,7 @@
 #content .scene.photos div.carousel div.right {right: 0px; background-position: right bottom;}
 
 #content .scene.photos ul.images {font-size: 0; height: 52px;}
-#content .scene.photos ul.images li {display: inline-block; vertical-align: top; opacity: 0.5;}
+#content .scene.photos ul.images li {display: inline-block; vertical-align: top; opacity: 0.5; cursor: pointer;}
 #content .scene.photos ul.images li.selected {opacity: 1;}
 #content .scene.photos ul.images li a {display: none;}
 
