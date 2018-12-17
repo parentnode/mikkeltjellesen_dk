@@ -2,11 +2,11 @@
 asset-builder @ 2018-12-17 23:04:17
 */
 
-/*seg_desktop_include.js*/
+/*seg_smartphone_include.js*/
 
-/*seg_desktop_include.js*/
+/*seg_smartphone_include.js*/
 
-/*seg_desktop.js*/
+/*seg_smartphone.js*/
 if(!u || !Util) {
 	var u, Util = u = new function() {};
 	u.version = "0.9.2";
@@ -4628,60 +4628,6 @@ Util.getVar = function(param, url) {
 		return "";
 	}
 }
-if(false && document.documentMode <= 10) {
-	Util.appendElement = u.ae = function(_parent, node_type, attributes) {
-		try {
-			var node = (obj(node_type)) ? node_type : document.createElement(node_type);
-			if(attributes) {
-				var attribute;
-				for(attribute in attributes) {
-					if(!attribute.match(/^(value|html)$/)) {
-						node.setAttribute(attribute, attributes[attribute]);
-					}
-				}
-			}
-			node = _parent.appendChild(node);
-			if(attributes) {
-				if(attributes["value"]) {
-					node.value = attributes["value"];
-				}
-				if(attributes["html"]) {
-					node.innerHTML = attributes["html"];
-				}
-			}
-			return node;
-		}
-		catch(exception) {
-			u.exception("u.ae (desktop_ie10)", arguments, exception);
-		}
-	}
-	Util.insertElement = u.ie = function(_parent, node_type, attributes) {
-		try {
-			var node = (obj(node_type)) ? node_type : document.createElement(node_type);
-			if(attributes) {
-				var attribute;
-				for(attribute in attributes) {
-					if(!attribute.match(/^(value|html)$/)) {
-						node.setAttribute(attribute, attributes[attribute]);
-					}
-				}
-			}
-			node = _parent.insertBefore(node, _parent.firstChild);
-			if(attributes) {
-				if(attributes["value"]) {
-					node.value = attributes["value"];
-				}
-				if(attributes["html"]) {
-					node.innerHTML = attributes["html"];
-				}
-			}
-			return node;
-		}
-		catch(exception) {
-			u.exception("u.ie (desktop_ie10)", arguments, exception);
-		}
-	}
-}
 
 
 /*u-basics.js*/
@@ -7973,7 +7919,17 @@ u.notifier = function(node) {
 }
 
 
+/*u-form-custom.js*/
+u.f.fixFieldHTML = function(field) {
+	u.bug("fixFieldHTML");
+	var label = u.qs("label", field);
+	if(label) {
+		u.ae(label, field._indicator);
+	}
+}
+
 /*i-page.js*/
+u.bug_force = true;
 u.bug_console_only = true;
 Util.Objects["page"] = new function() {
 	this.init = function(page) {
@@ -7982,96 +7938,188 @@ Util.Objects["page"] = new function() {
 		u.bug("This site is built using the combined powers of body, mind and spirit. Well, and also Manipulator, Janitor and Detector");
 		u.bug("Visit https://parentnode.dk for more information");
 		u.bug_force = false;
-		var i, node;
-		page.hN = u.qs("#header", page);
+		page.hN = u.qs("#header");
+		page.hN.service = u.qs(".servicenavigation", page.hN);
+		page.hN = u.ae(document.body, page.hN);
+		u.e.drag(page.hN, page.hN);
+		page._title = u.ae(page.hN, "div", {"class":"title"});
 		page.cN = u.qs("#content", page);
 		page.nN = u.qs("#navigation", page);
-		if(page.nN) {
-			page.nN = page.hN.appendChild(page.nN);
-		}
-		page.fN = u.qs("#footer", page);
+		page.nN = u.ae(document.body, page.nN);
+		page.fN = u.qs("#footer");
+		page.fN.service = u.qs(".servicenavigation", page.fN);
 		page.resized = function() {
-			this.browser_h = u.browserH();
-			this.browser_w = u.browserW();
-			if(this.cN && this.cN.scene && fun(this.cN.scene.resized)) {
-				this.cN.scene.resized();
+			u.bug("page resized")
+			page.browser_h = u.browserH();
+			page.browser_w = u.browserW();
+			var available_height = page.browser_h - page.hN.offsetHeight - page.fN.offsetHeight;
+			u.as(page.cN, "height", "auto", false);
+			if(available_height >= page.cN.offsetHeight) {
+				u.as(page.cN, "height", available_height+"px", false);
 			}
+			u.ass(page, {
+				"width":page.browser_w+"px"
+			})
+			u.ass(page.nN, {
+				"width": (page.offsetWidth - page.bn_nav.offsetWidth) + "px",
+				"height": (window.innerHeight) + "px"
+			});
+			if(!page.bn_nav.is_open) {
+				u.a.translate(page.nN, -(page.offsetWidth - page.bn_nav.offsetWidth), 0);
+			}
+			else {
+				page.nN.list.updateDragBoundaries();
+				u.a.translate(page, page.offsetWidth - page.bn_nav.offsetWidth, 0);
+				u.a.translate(page.hN, page.offsetWidth - page.bn_nav.offsetWidth, 0);
+			}
+			if(page.cN && page.cN.scene && typeof(page.cN.scene.resized) == "function") {
+				page.cN.scene.resized();
+			}
+			page.offsetHeight;
 		}
 		page.scrolled = function() {
-			this.scroll_y = u.scrollY();
-			if(this.cN && this.cN.scene && fun(this.cN.scene.scrolled)) {
-				this.cN.scene.scrolled();
+			if(page.cN && page.cN.scene && typeof(page.cN.scene.scrolled) == "function") {
+				page.cN.scene.scrolled();
 			}
+			page.offsetHeight;
 		}
 		page.orientationchanged = function() {
-			if(this.cN && this.cN.scene && fun(this.cN.scene.orientationchanged)) {
-				this.cN.scene.orientationchanged();
+			page.resized();
+			if(page.cN && page.cN.scene && typeof(page.cN.scene.orientationchanged) == "function") {
+				page.cN.scene.orientationchanged();
 			}
+			page.offsetHeight;
 		}
 		page.ready = function() {
-			u.bug("page ready");
 			if(!this.is_ready) {
 				this.is_ready = true;
-				u.e.addEvent(window, "resize", this.resized);
-				u.e.addEvent(window, "scroll", this.scrolled);
-				u.e.addEvent(window, "orientationchange", this.orientationchanged);
-				this.initHeader();
-				u.notifier(this);
+				u.e.addEvent(window, "resize", page.resized);
+				u.e.addEvent(window, "scroll", page.scrolled);
+				u.e.addEvent(window, "orientationchange", page.orientationchanged);
+				page.initNavigation();
+				u.notifier(page);
 				u.navigation();
-				this.resized();
+				page.resized();
 			}
 		}
 		page.cN.navigate = function(url) {
-			u.bug("page.navigated");
 			location.href = url;
 		}
-		page.initHeader = function() {
-			var janitor = u.ie(this.hN, "ul", {"class":"janitor"});
-			u.ae(janitor, u.qs(".servicenavigation .front", this.hN));
-			var janitor_text = u.qs("li a", janitor);
-			if(janitor_text) {
-				janitor_text.innerHTML = "<span>"+janitor_text.innerHTML.split("").join("</span><span>")+"</span>"; 
-				page.hN.janitor_spans = u.qsa("span", janitor_text);
-				var i, span, j, section, node;
-				for(i = 0; span = page.hN.janitor_spans[i]; i++) {
-					if(i == 0) {
-						u.ass(span, {
-							"transform":"translate(-8px, 0)"
-						});
-					}
-					else {
-						u.ass(span, {
-							"opacity":0,
-							"transform":"translate(-8px, -30px)"
-						});
-					}
+		page.initNavigation = function() {
+			page.nN.list = u.qs("ul.navigation", page.nN);
+			page.bn_nav = u.ae(page.hN, "div", {"class":"nav"});
+			u.ae(page.bn_nav, "div");
+			u.ae(page.bn_nav, "div");
+			u.ae(page.bn_nav, "div");
+			u.ce(page.bn_nav);
+			page.bn_nav.clicked = function(event) {
+				if(this.is_open) {
+					this.close();
 				}
-				u.ass(janitor_text, {"opacity": 1});
+				else {
+					u.bug("open navigation")
+					this.is_open = true;
+					u.ass(document.body, {
+						"overflow-y":"hidden"
+					});
+					u.a.transition(page, "all 0.2s ease-in-out");
+					u.a.transition(page.nN, "all 0.2s ease-in-out");
+					u.a.transition(page.hN, "all 0.2s ease-in-out");
+					u.a.translate(page, page.offsetWidth - this.offsetWidth, 0);
+					u.a.translate(page.hN, page.offsetWidth - this.offsetWidth, 0);
+					u.a.translate(page.nN, 0, 0);
+					page.nN.list.updateDragBoundaries();
+				}
 			}
-			u.ae(this, u.qs(".servicenavigation", this.hN));
-			var sections = u.qsa("ul.navigation > li", this.nN);
-			if(sections.length) {
+			page.bn_nav.close = function(event) {
+				u.bug("close navigation")
+				this.is_open = false;
+				u.ass(document.body, {
+					"overflow-y":"auto"
+				});
+				u.a.transition(page, "all 0.2s ease-in-out");
+				u.a.transition(page.nN, "all 0.2s ease-in-out");
+				u.a.transition(page.hN, "all 0.2s ease-in-out");
+				u.a.translate(page, 0, 0);
+				u.a.translate(page.hN, 0, 0);
+				u.a.translate(page.nN, - (page.offsetWidth - this.offsetWidth), 0);
+			}
+			if(page.fN.service) {
+				nodes = u.qsa("li:not(.totop)", page.fN.service);
+				for(i = 0; node = nodes[i]; i++) {
+					u.ae(page.nN.list, node);
+				}
+			}
+			var to_top = u.qs("li.totop", page.fN.service);
+			if(to_top) {
+				u.svgIcons("totoparrow", to_top);
+				u.ce(to_top);
+				to_top.clicked = function() {
+					u.scrollTo(window, page.hN);
+				}
+			}
+			if(page.hN.service) {
+				nodes = u.qsa("li", page.hN.service);
+				nodes = u.qsa("li:not(.front)", page.hN.service);
+				for(i = 0; node = nodes[i]; i++) {
+					u.ae(page.nN.list, node);
+				}
+				u.ie(page.nN.list, u.qs("li.front", page.hN.service));
+			}
+			u.ae(page.nN.list, u.qs("li.copyright", page.nN.list));
+			u.ass(page.nN, {
+				"width": (page.offsetWidth - page.bn_nav.offsetWidth) + "px",
+				"height": (window.innerHeight) + "px"
+			});
+			u.a.translate(page.nN, -(page.offsetWidth - page.bn_nav.offsetWidth), 0);
+			u.ass(page.nN, {
+				"display": "block",
+				"opacity": 1
+			});
+			u.e.drag(page.nN.list, [0, (window.innerHeight) - page.nN.list.offsetHeight, page.nN.offsetWidth, page.nN.list.offsetHeight], {"strict":false, "elastica":200, "vertical_lock":true});
+			page.nN.list.updateDragBoundaries = function() {
+				u.bug("updateDragBoundaries:" + this.offsetHeight + ", " + window.innerHeight)
+				if(this.offsetHeight > window.innerHeight) {					
+					this.start_drag_y = (window.innerHeight - 0) - this.offsetHeight;
+					this.end_drag_y = this.offsetHeight;
+					this.locked = false;
+				}
+				else {
+					this.start_drag_y = 0;
+					this.end_drag_y = this.offsetHeight;
+					this.locked = true;
+				}
+			}
+			var sections = u.qsa("ul.navigation > li", page.nN);
+			if(sections) {
 				for(i = 0; section = sections[i]; i++) {
 					section.header = u.qs("h3", section);
 					if(section.header) {
 						section.nodes = u.qsa("li", section);
 						if(section.nodes.length) {
+							for(j = 0; node = section.nodes[j]; j++) {
+								u.ce(node, {"type":"link"});
+								if(u.hc(node, document.body.className)) {
+									u.ac(node, "selected");
+								}
+							}
 							if(section.header) {
 								section.header.section = section;
 								u.e.click(section.header);
-								section.header.clicked = function(event) {
-									u.e.kill(event);
+								section.header.clicked = function() {
 									if(this.section.is_open) {
 										this.section.is_open = false;
 										u.as(this.section, "height", this.offsetHeight+"px");
 										u.saveNodeCookie(this.section, "open", 0, {"ignore_classvars":true});
 										u.addExpandArrow(this);
+										page.nN.list.updateDragBoundaries();
 									}
 									else {
 										this.section.is_open = true;
 										u.as(this.section, "height", "auto");
 										u.saveNodeCookie(this.section, "open", 1, {"ignore_classvars":true});
 										u.addCollapseArrow(this);
+										page.nN.list.updateDragBoundaries();
 									}
 								}
 								var state = u.getNodeCookie(section, "open", {"ignore_classvars":true});
@@ -8079,15 +8127,6 @@ Util.Objects["page"] = new function() {
 									section.is_open = true;
 								}
 								section.header.clicked();
-							}
-							for(j = 0; node = section.nodes[j]; j++) {
-								u.ce(node, {"type":"link"});
-								if(u.hc(node, document.body.className)) {
-									u.ac(node, "selected");
-									if(!section.is_open) {
-										section.header.clicked();
-									}
-								}
 							}
 						}
 						else {
@@ -8102,103 +8141,11 @@ Util.Objects["page"] = new function() {
 					}
 				}
 			}
-			if(this.nN) {
-				u.ass(this.nN, {
-					"display":"none"
-				});
-			}
-			if(sections.length && janitor_text) {
-				if(u.e.event_support == "mouse") {
-					u.e.hover(this.hN, {"delay_over":300});
-				}
-				else {
-					u.e.click(page.hN);
-					page.hN.clicked = function(event) {
-						if(!this.is_open) {
-							u.e.kill(event);
-							this.over();
-						}
-					}
-					page.hN.close = function(event) {
-						if(this.is_open) {
-							u.e.kill(event);
-							this.out();
-						}
-					}
-					u.e.addWindowEndEvent(page.hN, "close");
-				}
-				page.hN.over = function() {
-					this.is_open = true;
-					u.a.transition(page.nN, "none");
-					page.nN.transitioned = null;
-					u.t.resetTimer(this.t_navigation);
-					u.a.transition(this, "all 0.3s ease-in-out");
-					u.ass(this, {
-						"width":"230px"
-					});
-					u.ass(page.nN, {
-						"display":"block"
-					});
-					u.a.transition(page.nN, "all 0.3s ease-in");
-					u.ass(page.nN, {
-						"opacity":1
-					});
-					for(i = 0; span = page.hN.janitor_spans[i]; i++) {
-						if(i == 0) {
-							u.a.transition(span, "all 0.2s ease-in " + (i*50) + "ms");
-							u.ass(span, {
-								"transform":"translate(0, 0)"
-							});
-						}
-						else {
-							u.a.transition(span, "all 0.2s ease-in " + (i*50) + "ms");
-							u.ass(span, {
-								"opacity":1,
-								"transform":"translate(0, 0)"
-							});
-						}
-					}
-				}
-				page.hN.out = function() {
-					this.is_open = false;
-					u.a.transition(page.nN, "none");
-					page.nN.transitioned = null;
-					var span, i;
-					for(i = 0; span = page.hN.janitor_spans[i]; i++) {
-						if(i == 0) {
-							u.a.transition(span, "all 0.2s ease-in " + ((page.hN.janitor_spans.length-i)*50) + "ms");
-							u.ass(span, {
-								"transform":"translate(-8px, 0)"
-							});
-						}
-						else {
-							u.a.transition(span, "all 0.2s ease-in " + ((page.hN.janitor_spans.length-i)*50) + "ms");
-							u.ass(span, {
-								"opacity":0,
-								"transform":"translate(-8px, -30px)"
-							});
-						}
-					}
-					page.nN.transitioned = function() {
-						u.ass(this, {
-							"display":"none"
-						});
-					}
-					u.a.transition(page.nN, "all 0.2s ease-in");
-					u.ass(page.nN, {
-						"opacity":0
-					});
-					u.a.transition(this, "all 0.2s ease-in-out 300ms");
-					u.ass(this, {
-						"width":"30px"
-					});
-				}
-			}
 		}
 		page.ready();
 	}
 }
-u.e.addDOMReadyEvent(u.init)
+u.e.addDOMReadyEvent(u.init);
 
 
 /*i-scene.js*/
@@ -8210,6 +8157,15 @@ Util.Objects["scene"] = new function() {
 		}
 		scene.ready = function() {
 			page.cN.scene = this;
+			var h1 = u.qs("h1", this);
+			var h2 = u.qs("h1 + h2", this);
+			if(h1) {
+				u.ae(page._title, h1);
+			}
+			if(h2) {
+				u.ac(page._title, "double");
+				u.ae(page._title, h2);
+			}
 			page.resized();
 		}
 		scene.ready();
@@ -8225,6 +8181,15 @@ Util.Objects["login"] = new function() {
 		}
 		scene.ready = function() {
 			page.cN.scene = this;
+			var h1 = u.qs("h1", this);
+			var h2 = u.qs("h1 + h2", this);
+			if(h1) {
+				u.ae(page._title, h1);
+			}
+			if(h2) {
+				u.ac(page._title, "double");
+				u.ae(page._title, h2);
+			}
 			this._form = u.qs("form", this);
 			u.f.init(this._form);
 			this._form.fields["username"].focus();
@@ -8266,180 +8231,50 @@ Util.Objects["defaultList"] = new function() {
 					initialized++;
 				}
 			}
-			if(initialized == this.nodes.length && this.scroll_event_id) {
-				u.e.removeWindowEvent(this, "scroll", this.scroll_event_id);
-				this.scroll_event_id = false;
+			if(initialized == this.nodes.length) {
+				this.scroll_event_id = u.e.removeWindowEvent(this, "scroll", this.scroll_event_id);
 			}
 		}
 		div.scroll_event_id = u.e.addWindowEvent(div, "scroll", div.scrolled);
 		div.buildNode = function(node) {
-			node._actions = u.qsa(".actions li", node);
-			var i, action, form, bn_detele, form_disable, form_enable;
-			for(i = 0; action = node._actions[i]; i++) {
-				if(u.hc(action, "status")) {
-					if(!action.childNodes.length) {
-						action.update_status_url = action.getAttribute("data-item-status");
-						if(action.update_status_url) {
-							form_disable = u.f.addForm(action, {"action":action.update_status_url+"/"+node._item_id+"/0", "class":"disable"});
-							u.f.addField(form_disable, {"type":"hidden", "name":"csrf-token", "value":this.csrf_token});
-							u.f.addAction(form_disable, {"value":"Disable", "class":"button status"});
-							form_enable = u.f.addForm(action, {"action":action.update_status_url+"/"+node._item_id+"/1", "class":"enable"});
-							u.f.addField(form_enable, {"type":"hidden", "name":"csrf-token", "value":this.csrf_token});
-							u.f.addAction(form_enable, {"value":"Enable", "class":"button status"});
-						}
-					}
-					else {
-						form_disable = u.qs("form.disable", action);
-						form_enable = u.qs("form.enable", action);
-					}
-					if(form_disable && form_enable) {
-						u.f.init(form_disable);
-						form_disable.submitted = function() {
-							this.response = function(response) {
-								page.notify(response);
-								if(response.cms_status == "success") {
-									u.ac(this.parentNode, "disabled");
-									u.rc(this.parentNode, "enabled");
-								}
-							}
-							u.request(this, this.action, {"method":"post", "params":u.f.getParams(this)});
-						}
-						u.f.init(form_enable);
-						form_enable.submitted = function() {
-							this.response = function(response) {
-								page.notify(response);
-								if(response.cms_status == "success") {
-									u.rc(this.parentNode, "disabled");
-									u.ac(this.parentNode, "enabled");
-								}
-							}
-							u.request(this, this.action, {"method":"post", "params":u.f.getParams(this)});
-						}
-					}
-				}
-				else if(u.hc(action, "delete")) {
-					action.node = node;
-					u.o.oneButtonForm.init(action);
-					action.confirmed = function(response) {
-						if(response.cms_status == "success") {
-							if(response.cms_object && response.cms_object.constraint_error) {
-								u.ac(this.form.confirm_submit_button, "disabled");
-							}
-							else {
-								this.node.parentNode.removeChild(this.node);
-								this.node.div.scrolled();
-								u.sortable(this.node.div.list, {"targets":"items", "draggables":"draggable"});
-							}
-						}
-					}
-				}
-			}
-			if(div._images) {
-				u.ass(node._text, {
-					"padding-left": div._node_padding_left + "px"
-				});
-				node._format = u.cv(node, "format");
-				node._variant = u.cv(node, "variant");
-				if(node._format && node.div._media_width) {
-					node._image_src = "/images/"+node._item_id+"/"+(node._variant ? node._variant+"/" : "")+node.div._media_width+"x."+node._format;
-				}
-				else {
-					node._image_src = "/images/0/missing/"+node.div._media_width+"x.png";
-				}
-				if(node._image_src) {
-					u.as(node, "backgroundImage", "url("+node._image_src+")");
-				}
-			}
-			else if(div._audios) {
-				u.ass(node._text, {
-					"padding-left": div._node_padding_left + "px"
-				});
-				node._format = u.cv(node, "format");
-				node._variant = u.cv(node, "variant");
-				if(node._format) {
-					node._audio = u.ie(node, "div", {"class":"audioplayer"});
-					if(!page.audioplayer) {
-						page.audioplayer = u.audioPlayer();
-					}
-					node._audio.scene = this;
-					node._audio.url = "/audios/"+node._item_id+"/" + (node._variant ? node._variant+"/" : "") + "128."+node._format;
-					u.e.click(node._audio);
-					node._audio.clicked = function(event) {
-						if(!u.hc(this.parentNode, "playing")) {
-							var node, i;
-							for(i = 0; node = this.scene.nodes[i]; i++) {
-								u.rc(node, "playing");
-							}
-							page.audioplayer.loadAndPlay(this.url);
-							u.ac(this.parentNode, "playing");
-						}
-						else {
-							page.audioplayer.stop();
-							u.rc(this.parentNode, "playing");
-						}
-					}
-				}
-				else {
-					u.ac(audio, "disabled");
-				}
-			}
-			else if(div._videos) {
-			}
+			// 	
+			// 	
+			// 		
+			// 				
+			// 				
+			// 		
+			// 		
+			// 			
+			// 			
+			// 		
+			// 		
+			// 		
+			// 				
+			// 				
+			// 							
+			// 
+			// 	
+			// 	
+			// 	
+			// 	
+			// 
+			// 	
+			// 	
+			// 		
+			// 		
+			// 		
+			// 				
+			// 	
+			// 
+			// 
 			node._ready = true;
 			node.div.scrolled();
 		}
-		if(u.hc(div, "images") || u.hc(div, "videos") || u.hc(div, "audios")) {
-			div._images = u.hc(div, "images");
-			div._videos = u.hc(div, "videos");
-			div._audios = u.hc(div, "audios");
-			div._media_width = u.cv(div, "width") ? u.cv(div, "width") : (div._audios ? 40 : 100);
-			div._node_padding_left = ((Number(div._media_width) - 15) + ((u.hc(div, "sortable") && div.list) ? 25 : 0));
-		}
-		if(u.hc(div, "taggable")) {
-			div.add_tag_url = div.getAttribute("data-tag-add");
-			div.delete_tag_url = div.getAttribute("data-tag-delete");
-			div.get_tags_url = div.getAttribute("data-tag-get");
-			if(div.csrf_token && div.get_tags_url && div.delete_tag_url && div.add_tag_url) {
-				div.tagsResponse = function(response) {
-					if(response.cms_status == "success" && response.cms_object) {
-						this.all_tags = response.cms_object;
-					}
-					else {
-						page.notify(response);
-						this.all_tags = [];
-					}
-					var i, node;
-					for(i = 0; node = this.nodes[i]; i++) {
-						node.data_div = this;
-						node._tags = u.qs("ul.tags", node);
-						if(!node._tags) {
-							node._tags = u.ae(node, "ul", {"class":"tags"});
-						}
-						node._tags.div = this;
-						node._bn_add = u.ae(node._tags, "li", {"class":"add","html":"+"});
-						node._bn_add.node = node;
-						u.enableTagging(node);
-					}
-				}
-				u.request(div, div.get_tags_url, {"callback":"tagsResponse", "method":"post", "params":"csrf-token=" + div.csrf_token});
-			}
-		}
 		if(u.hc(div, "filters")) {
 			u.defaultFilters(div);
-			div.filtered = function() {
-				this.scrolled();
-				if(this.bn_all) {
-					this.bn_all.updateState();
-					this.bn_range._to.value = "";
-					this.bn_range._from.value = "";
-				}
-			}
 		}
 		if(u.hc(div, "sortable")) {
 			u.defaultSortableList(div.list);
-		}
-		if(u.hc(div, "selectable")) {
-			u.defaultSelectable(div);
 		}
 		div.scrolled();
 	}
