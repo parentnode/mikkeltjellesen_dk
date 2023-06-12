@@ -12,7 +12,7 @@ $IC = new Items();
 
 
 $page->bodyClass("photos");
-$page->pageTitle("Photographer - Teis Bruno");
+$page->pageTitle("Photographer - Mikkel Tjellesen");
 
 
 // Requires exactly two parameters /photos/#sindex#

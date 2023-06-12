@@ -1,2 +1,2 @@
-u.ga_account = 'UA-10755774-1';
-u.ga_domain = 'teisbruno.com';
+u.ga_account = 'G-XPX0V65W2W';
+u.ga_domain = 'mikkeltjellesen.dk';

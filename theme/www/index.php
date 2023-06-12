@@ -12,7 +12,7 @@ $IC = new Items();
 
 
 $page->bodyClass("front");
-$page->pageTitle("Photographer - Teis Bruno");
+$page->pageTitle("Photographer - Mikkel Tjellesen");
 
 
 $page->page(array(
