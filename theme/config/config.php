@@ -10,7 +10,7 @@ error_reporting(E_ALL);
 
 define("VERSION", "0.7.9.2");
 
-define("UI_BUILD", "MTD");
+define("UI_BUILD", "20230918-204441");
 define("SITE_UID", "MTD");
 define("SITE_NAME", "mikkeltjellesen.dk");
 define("SITE_URL", (isset($_SERVER["HTTPS"]) ? "https" : "http")."://".$_SERVER["SERVER_NAME"]);
